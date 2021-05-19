@@ -2,8 +2,13 @@
 
 '''
     code referred from http://www.steves-internet-guide.com/client-connections-python-mqtt/
+
     need to run mosquitto -c <path to conf file>
+
     'listner 1883' and 'allow_anonymous true' fields need to be set in conf file
+    
+    Also if your broker is running on a VM, make sure to use bridged network instead of NAT, 
+    for the VM to get its own unique public IP on the nework 
 '''
 
 import paho.mqtt.client as mqtt
@@ -19,7 +24,7 @@ def on_connect(client, userdata, flags, rc):
         print("Error connecting:",rc)
 
 
-broker = '192.168.0.109'
+broker = 'IP ADDRESS OF YOUR BROKER'
 port = '' #not necessary as it is default to 1883, if different then change it and pass it to connect() function
 
 # set the is_connected flag as a variable in Client class
