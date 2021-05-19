@@ -3,10 +3,13 @@
 '''
     code referred from http://www.steves-internet-guide.com/client-connections-python-mqtt/
 
+    Another great reference for understanding the network loop, 
+    http://www.steves-internet-guide.com/loop-python-mqtt-client/
+
     need to run mosquitto -c <path to conf file>
 
     'listner 1883' and 'allow_anonymous true' fields need to be set in conf file
-    
+
     Also if your broker is running on a VM, make sure to use bridged network instead of NAT, 
     for the VM to get its own unique public IP on the nework 
 '''
@@ -16,6 +19,7 @@ import time
 
 def on_connect(client, userdata, flags, rc):
 
+    #rc is the return code
     if rc == 0 :
         print("Successfully connected!")
         client.is_connected = True
