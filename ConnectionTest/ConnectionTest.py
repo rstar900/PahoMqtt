@@ -8,6 +8,8 @@
 
     need to run mosquitto -c <path to conf file>
 
+    for now, can use 'sudo tail -f /var/log/mosquitto/mosquitto.log' for debugging in another terminal
+
     'listner 1883' and 'allow_anonymous true' fields need to be set in conf file
 
     Also if your broker is running on a VM, make sure to use bridged network instead of NAT, 
@@ -28,7 +30,7 @@ def on_connect(client, userdata, flags, rc):
         print("Error connecting:",rc)
 
 
-broker = 'IP ADDRESS OF YOUR BROKER'
+broker = 'IP_ADDRESS_OF_BROKER'
 port = '' #not necessary as it is default to 1883, if different then change it and pass it to connect() function
 
 # set the is_connected flag as a variable in Client class
