@@ -30,7 +30,7 @@ def on_connect(client, userdata, flags, rc):
         print("Error connecting:",rc)
 
 
-broker = 'IP_ADDRESS_OF_BROKER'
+broker = '192.168.0.111'
 port = '' #not necessary as it is default to 1883, if different then change it and pass it to connect() function
 
 # set the is_connected flag as a variable in Client class

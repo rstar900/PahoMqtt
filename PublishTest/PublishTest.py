@@ -24,10 +24,14 @@ import paho.mqtt.client as mqtt
 # What to do on a publish event
 def on_publish(client, userdata, mid):
     print('Data published\n')
+    client.is_published = True
+    client.loop_stop()
     return
 
-broker = 'BROKER_IP_ADDRESS' # Broker's IP address
+broker = '192.168.0.111' # Broker's IP address
 port = '' # Broker's port address (not necessary as defaults to 1883)
+
+mqtt.Client.is_published =  False
 
 client = mqtt.Client('Python-Client') # Create a mqtt client object
 client.on_publish = on_publish # define an on_publish function for the client
@@ -36,9 +40,14 @@ client.on_publish = on_publish # define an on_publish function for the client
 try:
     client.connect(broker)
     ret,mid = client.publish('house/bulb1', 'ON')
+    
+    client.loop_start()
 
     if not ret == 0:
         print('Could not publish')
+        
+    while(client.is_published == False):
+        pass
 
 except:
     print('Could not connect to broker')

@@ -34,15 +34,13 @@ def on_message(client, userdata, message):
     print('message:', str(message.payload.decode('UTF-8')))
     print('Disconnecting now')
     client.loop_stop()
-    client.disconnect()
-    exit(0)
 
 # when subscibtion is successful, acknowledge it 
 def on_subscribe(client, userdata, mid, granted_qos):
     print('Subscribed to house/bulb1')
     return
 
-broker = 'BROKER_IP_ADDRESS' # Broker's IP address
+broker = '192.168.0.111' # Broker's IP address
 port = '' # Broker's port address (not necessary as defaults to 1883)
 
 # creating a class member flag to indicate if a message is received or not
@@ -73,3 +71,6 @@ try:
 except:
     print('could not connect')
     exit(1)
+    
+client.disconnect()
+exit(0)
